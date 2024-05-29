@@ -1,0 +1,27 @@
+# fly.toml app configuration file generated for reactstore on 2024-05-29T16:59:50-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'reactstore'
+primary_region = 'mia'
+
+[env]
+  ASPNETCORE_URLS="http://+:8080"
+  StripeSettings__PublishableKey="pk_test_51PLS8SJj4cZI4JXKp2xtCvOgCDgX3xLJtl8BgewlFK1QMC7Bo7pJZLTf41GLM6g9lz9bvKsVctXOhrOsQYs2NtYH00rbxfO2lh"
+
+[build]
+  image = 'sttruong/restore:latest'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
